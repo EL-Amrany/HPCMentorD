@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto">
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-2">Welcome back, {{ current_user.name }}!</h2>
+        <div class="flex flex-wrap gap-4 items-center">
+            <div>
+                Continue your journey as an <span class="font-semibold">{{ role_name }}</span> at the <span class="font-semibold">{{ current_level }}</span> level
+            </div>
+            <div class="ml-auto text-right">
+                <span class="rounded-full bg-blue-50 px-4 py-2 text-blue-700 text-sm font-semibold">{{ role_name }}</span>
+                <span class="ml-2 rounded-full bg-gray-100 px-4 py-2 text-gray-600 text-sm font-semibold">{{ current_level }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white rounded-2xl shadow-lg px-6 py-6 mb-8 flex flex-col sm:flex-row items-center gap-8">
+        <div class="text-3xl font-bold">{{ completed_modules }}/{{ total_modules }}</div>
+        <div class="flex-1">
+            <div class="text-sm mb-2">Modules Completed</div>
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
+                <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-4 rounded-full" style="width: {{ percent_complete }}%;"></div>
+            </div>
+            <div class="text-xs text-gray-600">{{ percent_complete }}% Overall Progress</div>
+        </div>
+        <div class="text-center">
+            <div class="text-sm mb-1">Active Sessions</div>
+            <div class="text-2xl font-semibold text-blue-600">{{ active_sessions }}</div>
+        </div>
+    </div>
+    <h3 class="text-xl font-bold mb-4">Your Learning Competencies</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {% for group in modules_data %}
+        <div class="bg-white rounded-2xl shadow-md p-5">
+            <div class="font-bold text-lg mb-2 flex items-center">
+                <span class="mr-2">💻</span> {{ group.competency.name }}
+            </div>
+            <div class="text-gray-600 text-sm mb-4">{{ group.competency.description }}</div>
+            <div class="mb-3">
+                <span class="text-xs text-blue-700 font-bold">
+                    Progress
+                </span>
+                <span class="ml-2 text-xs text-gray-600">{{ group.modules | selectattr('status', 'equalto', 'completed') | list | length }}/{{ group.modules | length }} modules</span>
+            </div>
+            <ul>
+                {% for module in group.modules %}
+                <li class="mb-2 flex items-center justify-between">
+                    <div>
+                        <a href="{{ url_for('main.module', module_id=module.id) }}" class="font-medium text-blue-700 hover:underline">{{ module.key }}: {{ module.name }}</a>
+                        <div class="text-xs text-gray-500">Level: {{ module.learning_level|capitalize if module.learning_level else 'N/A' }}</div>
+                    </div>
+                    {% if module.status == "completed" %}
+                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Completed</span>
+                    {% else %}
+                        <a href="{{ url_for('main.module', module_id=module.id) }}" class="text-xs text-blue-600 font-semibold hover:underline">Go &rarr;</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

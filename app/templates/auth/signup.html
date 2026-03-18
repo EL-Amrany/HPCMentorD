@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-10 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-6">Sign Up</h1>
+    <form method="POST">
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Name</label>
+            <input type="text" name="name" class="w-full border px-3 py-2 rounded" required>
+        </div>
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Email</label>
+            <input type="email" name="email" id="email" class="w-full border px-3 py-2 rounded" required>
+            <span id="email-feedback" class="block mt-1 text-sm"></span>
+        </div>
+        <div class="mb-6">
+            <label class="block font-semibold mb-1">Password</label>
+            <input type="password" name="password" class="w-full border px-3 py-2 rounded" required>
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition">Sign Up</button>
+    </form>
+</div>
+<script>
+document.getElementById('email').addEventListener('blur', () => {
+    const email = document.getElementById('email').value;
+    fetch('/validate_email', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email })
+    })
+    .then(r => r.json())
+    .then(data => {
+      const fb = document.getElementById('email-feedback');
+      if (data.valid) {
+        fb.textContent = '✅ Email looks good';
+       } else {
+        fb.textContent = data.message || '❌ Invalid or undeliverable';
+       }
+
+    });
+  });
+</script>
+
+{% endblock %}

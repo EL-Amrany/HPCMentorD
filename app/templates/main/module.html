@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-3xl mx-auto">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-bold">{{ module.key }}: {{ module.name }}</h2>
+        <div>
+            <span class="text-sm font-semibold">Quiz:</span>
+            {% if progress.quiz_passed %}
+                <span class="text-green-600 font-semibold">Passed</span>
+            {% else %}
+                <span class="text-red-600 font-semibold">Pending</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <div id="chat-box" class="h-80 overflow-y-auto mb-4 p-2 bg-gray-50 rounded-lg"></div>
+        <form id="chat-form" data-module-id="{{ module.id }}" class="flex gap-2">
+            <input type="text" id="chat-input" class="flex-1 border px-3 py-2 rounded" placeholder="Type your message..." required>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Send</button>
+        </form>
+        <button
+            id="mark-complete-btn"
+            class="mt-4 bg-green-500 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            {% if not progress.quiz_passed or progress.status == 'completed' %}disabled{% endif %}
+            {% if progress.status == 'completed' %}style="display:none"{% endif %}
+        >Mark Complete</button>
+        <span id="completed-badge" class="ml-4 px-3 py-1 bg-green-100 text-green-700 rounded-full font-semibold"
+              {% if progress.status != 'completed' %}style="display:none"{% endif %}
+        >Completed</span>
+    </div>
+</div>
+<script>
+const moduleId = {{ module.id }};
+const quizPassed = {{ 'true' if progress.quiz_passed else 'false' }};
+const completed = {{ 'true' if progress.status == 'completed' else 'false' }};
+
+document.addEventListener('DOMContentLoaded', function () {
+    const markBtn = document.getElementById('mark-complete-btn');
+    const badge = document.getElementById('completed-badge');
+    if (completed) {
+        if (markBtn) markBtn.style.display = 'none';
+        if (badge) badge.style.display = '';
+    }
+    // Mark Complete click handler
+    if (markBtn) {
+        markBtn.addEventListener('click', async function (e) {
+            e.preventDefault();
+            const resp = await fetch(`/mark_complete/${moduleId}`, {method: 'POST'});
+            if (resp.ok) {
+                markBtn.style.display = 'none';
+                badge.style.display = '';
+            }
+        });
+    }
+});
+</script>
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+{% endblock %}
