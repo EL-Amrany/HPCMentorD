@@ -1,0 +1,9 @@
+For each module, run 3 short items that cover different cognitive actions:
+
+1-Recall (MCQ): key term / command meaning
+2-Transfer (MCQ): pick the right action in a small scenario
+3-Do (Task): user types a command or one-line fix (graded by a small rubric)
+
+==>Pass rule (simple, but robust):
+pass if ≥ 2/3 correct AND the Task is correct
+allow 1 retry per question (second failure reveals the correct answer + explanation and moves on)
