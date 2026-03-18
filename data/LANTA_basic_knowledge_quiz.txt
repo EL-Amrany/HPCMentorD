@@ -1,0 +1,99 @@
+LANTA BASIC KNOWLEDGE QUIZ
+
+Purpose: This quiz provides guidance on whether you should attend the
+Introduction to LANTA HPC workshop. Workshop link:
+https://thaisc.atlassian.net/wiki/x/R4DAKQ
+
+Instructions: - This is an ungraded quiz. - You may select “do not know”
+if you are unsure. - If your score is less than 9 out of 12, it is
+recommended to attend the workshop.
+
+Contact: thaisc-support@nstda.or.th
+
+QUESTIONS
+
+1)  Select all space on LANTA that you can use as a LANTA user. (1
+    point)
+    -   User home (/home/username)
+    -   Project home (/project/ltxxxxxx-yyyy)
+    -   Scratch (/scratch/ltxxxxxx-yyyy)
+    -   Share folder (/project/share)
+    -   do not know
+2)  If myqueue shows that some of your job is in PD state with
+    (Priority) reason. What does it mean? (1 point)
+    -   Not enough resources for your job. Your job is waiting in the
+        queue.
+    -   Enough resources for your job. However, your priority is lower
+        than the system pre-defined cut-off value.
+    -   Not enough resources for your job. Need to resubmit the job
+        later.
+    -   Enough resources for your job. However, your SHr is not enough.
+    -   do not know
+3)  Which of the following is an appropriate command to compile a
+    software in LANTA Cray Programming Environment (CPE)? (1 point)
+    -   cpe
+    -   gcc
+    -   icc
+    -   cc
+    -   do not know
+4)  Which command is use for checking available SHr balance on LANTA? (1
+    point)
+    -   sbill
+    -   myquota
+    -   sbalance
+    -   myqueue
+    -   do not know
+5)  How much it cost in (SHr) if a job running on 32 cores on a compute
+    partition (i.e. compute node) for 4 hours? (1 point)
+    -   4 SHr
+    -   3 SHr
+    -   2 SHr
+    -   1 SHr
+    -   do not know
+6)  What’s is LANTA HPC remote hostname? (1 point)
+    -   lanta.or.th
+    -   lanta.thaisc.io
+    -   lanta.nstda.or.th
+    -   thaisc.io
+    -   do not know
+7)  Which of following action is prohibited on LANTA frontend and should
+    be done only on transfer node? (1 point)
+    -   compile a software using 16 cores
+    -   download a large file from the internet
+    -   edit a python file using vi or nano
+    -   remove a folder
+    -   do not know
+8)  What happens if a SLURM job exceeds the specified time limit set by
+    the -t option? (1 point)
+    -   The job will continue running until it completes
+    -   The job will be automatically suspended and can be resumed later
+    -   The job will be automatically terminated
+    -   The job will be paused until the user provides additional time
+    -   do not know
+9)  In case that you want your task run on GPU. Select all following
+    SBATCH option that satisfy your requirement. (1 point)
+    -   -p gpu
+    -   -p gpu –gpus-per-node=4
+    -   -p a100 –gpus-per-node=4
+    -   -p gpu-devel –gpus-per-node=4
+    -   do not know
+10) Select all partition(s) that available on LANTA. (1 point)
+    -   compute
+    -   a100
+    -   gpu
+    -   memory
+    -   do not know
+11) Select all command(s) that appropriate to submit a job script to
+    Slurm. (1 point) (Assume submit.sh is correct and account ID is
+    correct.)
+    -   ./submit.sh
+    -   sh submit.sh
+    -   bash submit.sh
+    -   sbatch submit.sh
+    -   do not know
+12) Which command is used to load a module? (1 point)
+    -   module load
+    -   module init
+    -   module activate
+    -   module restore
+    -   do not know

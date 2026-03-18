@@ -1,0 +1,60 @@
+Quiz: LANTA basic knowledge — Questions & Answers
+
+1) Select all space on LANTA that you can use as a LANTA user.
+Answer:
+- User home (/home/username)
+- Project home (/project/ltxxxxxx-yyyy)
+- Scratch (/scratch/ltxxxxxx-yyyy)
+- Share folder (/project/share)
+
+2) If myqueue shows that some of your job is in PD state with (Priority) reason. What does it mean?
+Answer:
+- Enough resources for your job. However, your priority is lower than the system pre-defined cut-off value.  (Jobs run after higher-priority jobs.)  [Ref: LANTA “Checking Job status” — Priority reason]
+
+3) Which of the following is an appropriate command to compile a software in LANTA Cray Programming Environment (CPE)?
+Answer:
+- cc  [Ref: LANTA “Software installation guideline” — Cray compiler wrappers]
+
+4) Which command is use for checking available SHr balance on LANTA?
+Answer:
+- sbalance  [Ref: LANTA Quick Start Guide]
+
+5) How much it cost in (SHr) if a job running on 32 cores on a compute partition (i.e. compute node) for 4 hours?
+Answer:
+- 1 SHr
+(Reason: 1 SHr = 1 hour of a 128-core compute node; cost = (32/128)*4 = 1.)  [Ref: LANTA Quick Start Guide]
+
+6) What's is LANTA HPC remote hostname?
+Answer:
+- lanta.nstda.or.th  [Ref: LANTA Quick Start Guide / Login to LANTA]
+
+7) Which of following action is prohibited on LANTA frontend and should be done only on transfer node?
+Answer:
+- download a large file from the internet  [Ref: LANTA Frontend Usage Policy + transfer node guidance]
+
+8) What happens if a SLURM job exceeds the specified time limit set by the -t option?
+Answer:
+- The job will be automatically terminated.
+
+9) In case that you want your task run on GPU. Select all following SBATCH option that satisfy your requirement.
+Answer:
+- -p gpu --gpus-per-node=4
+- -p a100 --gpus-per-node=4
+- -p gpu-devel --gpus-per-node=4
+[Ref: LANTA job script examples / GPU options in “Software installation guideline”]
+
+10) Select all partition(s) that available on LANTA.
+Answer:
+- compute
+- a100
+- gpu
+- memory
+[Ref: LANTA docs mention compute/gpu/memory nodes; a100 partition appears in GPU job examples]
+
+11) Select all command(s) that appropriate to submit a job script to Slurm.
+Answer:
+- sbatch submit.sh  [Ref: LANTA “Software installation guideline” + “Running your first job”]
+
+12) Which command is used to load a module?
+Answer:
+- module load  [Ref: LANTA Quick Start Guide]
